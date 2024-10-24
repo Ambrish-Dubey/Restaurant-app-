@@ -1,0 +1,24 @@
+Q1: Why GET isnt taking the req.body if the form is posted?
+Ans:- 
+The issue you're encountering arises because your GET request (handled by homeController) cannot access req.body, which is only available for POST requests.
+
+Key Points:
+GET requests do not have a body. The GET method typically sends data via the URL query string (e.g., ?name=John&age=30).
+POST requests send data through the request body, which you are handling correctly in your formSubmit function.
+
+Solution:
+If you want to handle form submission using the POST method, ensure the form uses method="post" (which you already have). The formSubmit function correctly handles req.body, which contains the form data. You don't need to access req.body in your homeController for the GET route.
+
+Here's a breakdown of what should happen:
+
+GET: The homeController renders the form when visiting the root URL (/).
+POST: When the form is submitted, the formSubmit function handles the POST request, processes req.body, and redirects to /student.
+
+Example Flow:
+Visit the home page (GET /):
+Renders the form using homeController.
+No req.body data here (GET requests don’t have a body).
+Submit the form (POST /):
+The formSubmit handler captures the form data from req.body.
+It processes the form data and then redirects to /student.
+Your current setup is correct, but the confusion likely comes from expecting req.body in the GET request. Only POST requests carry a body.

@@ -1,0 +1,25 @@
+<%- include('./partials/header.ejs')  %>
+
+<form  method="post" >
+    
+    
+    <div class="row">
+
+      <div class="col-2">
+
+      <label for="name">Name</label>
+      <input type="text" name="name" id="" value="<%= name %>">
+
+      <label for="price">Price</label>
+      <input type="text" name="price" id="" value="<%= price %>">
+
+      <label for="Description">Description</label>
+      <input type="text" name="description" id="" value="<%= description %>">
+    
+      
+      <button>Submit</button>
+      <a href="/admin">Back to Home</a>
+    </div>
+
+</form>
+<%- include('./partials/footer.ejs') %>

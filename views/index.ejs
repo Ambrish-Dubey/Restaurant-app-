@@ -1,0 +1,97 @@
+<%- include('./partials/header.ejs') %>
+
+  <div class="container">
+
+    <div class="row mt-2">
+
+      <div class="col-sm-6 alert alert-success text-center mt-5 "  style="height: 500px; overflow-y: auto;">
+
+        <form method="post">
+
+          <div class="row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+
+
+            <div class="col-md-6">
+              <input type="text" name="name" id="" class="form-control">
+            </div>
+          </div>
+
+
+          <div class="row mt-2">
+
+            <label for="location" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-md-6">
+            <input type="text" name="description" id="" class="form-control">
+            
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+          </div>
+
+
+          <div class="row mt-2">
+            
+            <label for="age" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-md-6">
+            <input type="Number" name="price" id="" class="form-control">
+          </div>
+          </div>
+
+          
+
+        </form>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-12 alert alert-success text-center mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% var i = 1 %>
+            <% doc.forEach( (item)=>{ %>
+              <tr>
+                <th scope="row"><%= i++ %></th>
+                <td>
+                  <%= item.name %>
+                </td>
+                <td>
+                  <%= item.description %>
+                </td>
+                <td>
+                  <%= item.price %>
+
+                <td>
+                  <form action="/admin/edit/<%= item._id %>" method="get">
+                    <button class="btn btn-info">Edit</button>
+                  </form>
+
+                </td>
+                <td>
+                  <form action="/admin/delete/<%= item._id %>" method="get">
+                    <button class="btn btn-danger">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
